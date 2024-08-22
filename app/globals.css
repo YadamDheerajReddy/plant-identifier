@@ -6,13 +6,17 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --gradient-start: 144, 238, 144; /* Light Green */
+  --gradient-end: 64, 224, 208;     /* Teal */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-end-rgb: 32, 32, 32;
+    --gradient-start: 144, 238, 144; /* Light Green */
+    --gradient-end: 64, 224, 208;     /* Teal */
   }
 }
 
@@ -26,8 +30,53 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.moving-gradient {
+  background: linear-gradient(270deg, 
+    rgba(var(--gradient-start), 1), 
+    rgba(var(--gradient-end), 1), 
+    rgba(var(--gradient-start), 1));
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2d3748;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4A5568;
+  border-radius: 10px;
+  border: 3px solid #2d3748;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A0AEC0;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #ffff #2d3748;
 }

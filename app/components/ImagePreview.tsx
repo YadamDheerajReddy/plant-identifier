@@ -1,11 +1,11 @@
-interface ImagePreviewProps {
-    src: string;
-  }
-  
-  export default function ImagePreview({ src }: ImagePreviewProps) {
-    return (
-      <div className="mb-6 w-full max-w-lg">
-        <img src={src} alt="Uploaded plant" className="w-full h-auto rounded-lg shadow-md" />
-      </div>
-    );
-  } 
+import Image from 'next/image'
+
+function ImagePreview({ src }: { src: string }) {
+  return (
+    <div>
+      <Image src={src} alt="Plant preview" width={600} height={400} />
+    </div>
+  )
+}
+
+export default ImagePreview;
